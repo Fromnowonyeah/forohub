@@ -30,10 +30,10 @@ public class TopicoController {
         return topicoRepository.findAll(paginacion).map(DatosListadoTopico::new);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @Transactional
-    public void actualizarTopico(@RequestBody @Valid DatosActualizarTopico datosActualizarTopico){
-        Topico topico = topicoRepository.getReferenceById(datosActualizarTopico.id());
+    public void actualizarTopico(@PathVariable Long id, @RequestBody @Valid DatosActualizarTopico datosActualizarTopico){
+        Topico topico = topicoRepository.getReferenceById(id);
         topico.actualizarTopico(datosActualizarTopico);
 
     }
